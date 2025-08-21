@@ -1,0 +1,27 @@
+{
+  "name": "naath-archive-monorepo",
+  "private": true,
+  "version": "1.1.0",
+  "description": "Naath Archive monorepo: Next.js web + NestJS API",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run -w apps/web build && npm run -w apps/api build",
+    "dev": "concurrently -n web,api -c blue,magenta \"npm run -w apps/web dev\" \"npm run -w apps/api start:dev\"",
+    "dev:web": "npm run -w apps/web dev",
+    "dev:api": "npm run -w apps/api start:dev",
+    "lint": "npm run -w apps/web lint && npm run -w apps/api lint",
+    "format": "prettier --write .",
+    "typecheck": "npm run -w apps/web typecheck && npm run -w apps/api typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.3.3"
+  }
+}
+
